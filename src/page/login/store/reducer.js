@@ -5,7 +5,9 @@ const defaultState = fromJS({
     Login: false,
     userList:[],
     msg: 'success',
-    msgStr: ''
+    msgStr: '',
+    account: '',
+    password: ''
 })
 
 export default (state = defaultState, action) =>{
@@ -24,6 +26,13 @@ export default (state = defaultState, action) =>{
         return state.merge({
             msg: action.msg,
             msgStr: action.msgStr
+        })
+        case creaters.CHANGEINPUT:
+        let ele = action.ele;
+        return state.merge({
+            [ele]: action.value,
+            msg: '',
+            msgStr: ''
         })
         default:
         return state;

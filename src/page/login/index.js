@@ -1,59 +1,57 @@
 import React, { Component } from 'react';
 import {
-    Form, Icon, Input, Button, Checkbox, message
+    Form, message, Tag
 } from 'antd';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import 'antd/dist/antd.css';
-import { LoginBox, FromShow } from './style';
+import { LoginBox, LoginFrom, FromShow, Logo, Input, Tags, Button } from './style';
 import *as creaters from './store/actionCreter';
+import logo from '../../logo.svg';
 
 class NormalLoginForm extends Component {
-    render() {
-        const { getFieldDecorator } = this.props.form;
-        const { provingLogin, msg, msgStr, clearMsg, Login, loginstatus } = this.props;
+    componentDidUpdate(){
+        const {msg, msgStr, loginstatus, clearMsg}  = this.props;
         if (msg === "success" && msgStr) {
-            message.success(msgStr, 3, loginstatus);
+            message.success(msgStr, 2, loginstatus);
         } else if (msg === "waring" && msgStr) {
-            message.warning(msgStr, 3, clearMsg);
+            message.warning(msgStr, 2, clearMsg);
         } else if (msg === "error" && msgStr) {
-            message.error(msgStr, 3, clearMsg);
+            message.error(msgStr, 2, clearMsg);
         }
+    }
+    render() {
+        const { provingLogin, Login, account, password, changeInput } = this.props;
         if (Login) {
             return (<Redirect to="/login"></Redirect>)
         } else {
             return (
                 <LoginBox>
                     <FromShow>
-                        <Form className="login-form">
-                            <Form.Item>
-                                {getFieldDecorator('account', {
-                                    rules: [{ required: true, message: '请输入您的用户名!' }],
-                                })(
-                                    <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" autoFocus />
-                                )}
-                            </Form.Item>
-                            <Form.Item>
-                                {getFieldDecorator('password', {
-                                    rules: [{ required: true, message: '请输入您的密码!' }],
-                                })(
-                                    <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="密码" />
-                                )}
-                            </Form.Item>
-                            <Form.Item>
-                                {getFieldDecorator('remember', {
-                                    valuePropName: 'checked',
-                                    initialValue: true,
-                                })(
-                                    <Checkbox>记住密码</Checkbox>
-                                )}
-                                <Link className="login-form-forgot" to="/">忘记密码</Link>
-                                <Button type="primary" htmlType="submit" onClick={() => { provingLogin(this) }} className="login-form-button">
-                                    登录
-                    </Button>
-                                或 <Link to="/">免费注册!</Link>
-                            </Form.Item>
-                        </Form>
+                        <LoginFrom>
+                            <Logo><img src={logo}/></Logo>
+                            <Tags>
+                                <span className="active">登录</span>
+                                <span>注册</span>
+                            </Tags>
+                            <Input>
+                                <span className={ 'input input--hoshi' + (account ? ' input--filled':'')}>
+                                    <input className="input__field input__field--hoshi" autoFocus="autoFocus" type="text" name="account" value={ account } onChange={(e) =>{changeInput(e)}} />
+                                    <label className="input__label input__label--hoshi input__label--hoshi-color-1" htmlFor="input-4">
+                                        <span className="input__label-content input__label-content--hoshi">用户名</span>
+                                    </label>
+                                </span>
+                            </Input>
+                            <Input>
+                                <span className={ 'input input--hoshi' + (password ? ' input--filled':'')}>
+                                    <input className="input__field input__field--hoshi" type="password" name="password" value={ password } onChange={(e) =>{changeInput(e)}} />
+                                    <label className="input__label input__label--hoshi input__label--hoshi-color-1" htmlFor="input-4">
+                                        <span className="input__label-content input__label-content--hoshi">密码</span>
+                                    </label>
+                                </span>
+                            </Input>
+                            <Button onClick={() =>{provingLogin(this)}}>登录</Button>
+                        </LoginFrom>
                     </FromShow>
 
                 </LoginBox>
@@ -66,24 +64,39 @@ const mapStateToProps = (state) => {
     return {
         Login: state.getIn(['login', 'Login']),
         msg: state.getIn(['login', 'msg']),
-        msgStr: state.getIn(['login', 'msgStr'])
+        msgStr: state.getIn(['login', 'msgStr']),
+        account: state.getIn(['login', 'account']),
+        password: state.getIn(['login', 'password'])
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         provingLogin(_this) {
-            _this.props.form.validateFields((err, values) => {
-                if (!err) {
-                    dispatch(creaters.checkLogin(values))
-                }
-            });
+            const account = _this.props.account.trim();
+            const password = _this.props.password.trim();
+            const data = {account, password};
+            if(!account){
+                dispatch(creaters.changeMsg('error', '用户名不能为空！'));
+                return;
+            }
+            if(!password){
+                dispatch(creaters.changeMsg('error', '密码不能为空！'));
+                return;
+            }
+            dispatch(creaters.checkLogin(data))
         },
         clearMsg() {
             dispatch(creaters.changeMsg('succer', ''));
         },
         loginstatus() {
             dispatch(creaters.loginStatus(true))
+        },
+        changeInput(event){
+            let target = event.target;
+            let name = target.name;
+            let value = target.type === 'checkbox' ? target.checked : target.value
+            dispatch(creaters.changeInput(name, value))
         }
     }
 }

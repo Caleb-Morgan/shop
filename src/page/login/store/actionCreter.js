@@ -17,6 +17,12 @@ export const userMsg = (data) =>({
     data
 })
 
+export const changeInput = (ele, value) =>({
+    type: creaters.CHANGEINPUT,
+    ele,
+    value
+})
+
 export const checkLogin = () =>{
     return (dispatch) =>{
         axios.get('/api/user.json')
@@ -32,6 +38,7 @@ export const checkLogin = () =>{
         })
         .catch((err) =>{
             console.error(err);
+            dispatch(changeMsg('error', '登录出错刷新后重试！'))
         })
     }
 }
