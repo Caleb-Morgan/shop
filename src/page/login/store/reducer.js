@@ -7,7 +7,11 @@ const defaultState = fromJS({
     msg: 'success',
     msgStr: '',
     account: '',
-    password: ''
+    password: '',
+    checked: false,
+    reaccount: '',
+    repassword: '',
+    registe: false,
 })
 
 export default (state = defaultState, action) =>{
@@ -34,6 +38,8 @@ export default (state = defaultState, action) =>{
             msg: '',
             msgStr: ''
         })
+        case creaters.CHANGETYPE:
+        return state.set('registe', action.status);
         default:
         return state;
     }

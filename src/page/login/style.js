@@ -6,18 +6,34 @@ export const LoginBox = styled.div `
   justify-content: center;
   align-items: center;
   background: url('./bg.jpg');
+  background-size:cover;
 `
 export const LoginFrom = styled.div `
+  position:relative;
   max-width: 400px;
-  height: 100%;
-  padding: 2rem 4rem;
-  margin-left: 3rem;
-  background: rgb(27, 35, 48);
+  height: 490px;
+  padding: 3.5rem;
+  background: #fff;
+  z-index: 2;
+  .button{
+    margin-top: 1rem;
+  }
+  &::before{
+    content: '';
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 99.92%;
+    width: 25px;
+    height: 0;
+    border-bottom: 490px solid #fff;
+    border-right: 100px solid transparent;
+  }
 `
 export const FromShow = styled.div `
   width:900px;
   height: auto;
-  background: url('./bg.jpg');
+  background: transparent;
   background-repeat: no-repeat;
   display: flex;
   justify-content:flex-start;
@@ -30,16 +46,16 @@ export const FromShow = styled.div `
 `
 export const Tags = styled.div `
   .active{
-    color: rgb(221, 22, 89);
+    color: #1890ff;
   }
   span:nth-child(1):after{
     content: '|';
     margin-left: 1rem;
-    color: rgb(55, 64, 73);
+    color: #595F6E;
   }
   span{
     padding-right: 1rem;
-    color: rgb(55, 64, 73);
+    color: #595F6E;
     font-size: 1.1rem;
     cursor: pointer;
   }
@@ -54,6 +70,26 @@ export const Input = styled.div `
     max-width: 400px;
     width: 100%;
     vertical-align: top;
+    background: transparent;
+  }
+  .checked{
+    margin-bottom: 10px;
+  }
+  .checked span{
+    font-size: 1rem;
+    color: #595F6E;
+  }
+  .login-forgot{
+    float:right;
+    font-size: 1rem;
+    margin-top: .5rem;
+  }
+  input:-webkit-autofill , textarea:-webkit-autofill, select:-webkit-autofill {
+    -webkit-text-fill-color: #ededed !important;
+    -webkit-box-shadow: 0 0 0px 1000px transparent  inset !important;
+      background-color:transparent;
+      background-image: none;
+      transition: background-color 50000s ease-in-out 0s; //背景色透明  生效时长  过渡效果  启用时延迟的时间
   }
 
   .input__field {
@@ -204,7 +240,7 @@ export const Input = styled.div `
     }
   }
 `
-export const Button = styled.div `
+/* export const Button = styled.div `
     background: rgb(38, 49, 59);
     position:relative;
     margin-top: 1em;
@@ -229,9 +265,43 @@ export const Button = styled.div `
       left:50%; 
       width:0;
     }
-`
+` */
 
 export const Logo = styled.div `
   width:50px;
   margin-bottom: 20px;
+`
+
+export const Welcome = styled.div`
+  text-align: right;
+  background: #ccdef7;
+  width: 500px;
+  height: 25rem;
+  margin: 1rem 4rem 0 0;
+  padding: 3rem 4rem 0 3rem;
+  box-shadow: 2px 2px 10px 4px #403d3d;
+  border-radius: 5px;
+  h1{
+    font-size: 3rem;
+    margin-bottom: 0;
+    font-weight: bold;
+  }
+  span{
+    font-size: 1.5rem;
+  }
+  p{
+    margin-bottom: 2rem;
+  }
+  .home{
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: #1890ff;
+    padding: 1rem;
+    color: #fff;
+    font-size: 1.5rem;
+    line-height: 1rem;
+    border-radius: 30px;
+    text-align: center;
+  }
 `

@@ -1,6 +1,6 @@
 import *as creaters from './actionType';
 import axios from 'axios';
-import { fromJS } from 'immutable'
+import { fromJS } from 'immutable';
 
 export const changeMsg = (msg, msgStr) =>({
     type: creaters.CHANGEMESSAGE,
@@ -23,6 +23,12 @@ export const changeInput = (ele, value) =>({
     value
 })
 
+export const changeType = (status) =>({
+    type: creaters.CHANGETYPE,
+    status
+})
+
+
 export const checkLogin = () =>{
     return (dispatch) =>{
         axios.get('/api/user.json')
@@ -39,6 +45,23 @@ export const checkLogin = () =>{
         .catch((err) =>{
             console.error(err);
             dispatch(changeMsg('error', '登录出错刷新后重试！'))
+        })
+    }
+}
+
+export const checkRegiste = () =>{
+    return (dispatch) =>{
+        axios.get('/api/registe')
+        .then((res) =>{
+            if(res.data.status){
+                dispatch(changeMsg('success', '注册成功！'));
+            }else{
+                dispatch(changeMsg('error', '注册失败！'));
+            }
+        })
+        .catch((err) =>{
+            console.error(err)
+            dispatch(changeMsg('error', '注册失败刷新后重试！'));
         })
     }
 }

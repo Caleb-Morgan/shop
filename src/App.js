@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
-//import Index from './page/index';
+import Index from './page/index';
 import Login from './page/login';
 
 class App extends Component{
@@ -11,7 +11,8 @@ class App extends Component{
       <Provider store={ store }>
         <BrowserRouter>
           <div>
-            <Route path="/" exact component={ Login }></Route>
+            <Route path="/" exact component={ Index }></Route>
+            <Route path="/login" exact component={ Login }></Route>
           </div>
         </BrowserRouter>
       </Provider>
