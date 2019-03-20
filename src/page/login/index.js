@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { message, Checkbox, Button, Icon } from 'antd';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
-import 'antd/dist/antd.css';
 import { LoginBox, LoginFrom, FromShow, Logo, Input, Tags, Welcome } from './style';
 import *as creaters from './store/actionCreter';
 import logo from '../../logo.svg';
