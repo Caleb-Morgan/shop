@@ -1,10 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Row, Col } from 'antd';
+import { Banner } from './style';
 
 class Index extends Component{
     render(){
         return(
-            <div>ss</div>
+            <Fragment>
+                <Banner>
+                    <img src="./folks.png" alt="test"/>
+                    <div className="bottom">SHOP ONLINE</div>
+                </Banner>
+                <Row>
+                   <Col></Col> 
+                </Row>
+            </Fragment>
         )
     }
 }

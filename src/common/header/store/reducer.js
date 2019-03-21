@@ -3,7 +3,16 @@ import { fromJS } from 'immutable';
 
 const defaultState = fromJS({
     scroll: false,
-    hoverIndex: true
+    hoverIndex: true,
+    shopList: [
+        {"name": 'XX', "pice": 'XX', "Introduction": '图像无法显示时的替代文本图像无法显示时的替代文本'},
+        {"name": 'XX', "pice": 'XX', "Introduction": '图像无法显示时的替代文本图像无法显示时的替代文本'},
+        {"name": 'XX', "pice": 'XX', "Introduction": '图像无法显示时的替代文本图像无法显示时的替代文本'},
+        {"name": 'XX', "pice": 'XX', "Introduction": '图像无法显示时的替代文本图像无法显示时的替代文本'},
+        {"name": 'XX', "pice": 'XX', "Introduction": '图像无法显示时的替代文本图像无法显示时的替代文本'},
+        {"name": 'XX1', "pice": 'XX', "Introduction": '图像无法显示时的替代文本图像无法显示时的替代文本'}
+    ],
+    shopShow: false
 })
 
 export default (state = defaultState, action) =>{
@@ -14,7 +23,7 @@ export default (state = defaultState, action) =>{
         })
         case creaters.ONMOUSEHOVER:
         return state.merge({
-            hoverIndex: action.index
+            [action.tp]: action.index
         })
         default:
         return state;

@@ -4,7 +4,8 @@ export const changeScroll = (status) =>({
     type: creaters.CHANGESCROLL,
     status
 })
-export const onMouseHover = (index) =>({
+export const onMouseHover = (tp, index) =>({
     type: creaters.ONMOUSEHOVER,
+    tp,
     index
 })

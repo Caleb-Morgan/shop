@@ -8,13 +8,17 @@ import 'antd/dist/antd.css';
 import { Iconfont } from './static/iconfont';
 import Head from './common/header';
 import {Layout} from 'antd';
+
+import { Indexstyle } from './style';
 const  { Header, Content, Footer } = Layout;
+
 
 class App extends Component{
   render(){
     return(
       <Provider store={ store }>
         <Iconfont/>
+        <Indexstyle/>
         <BrowserRouter>
           <Fragment>
             <Header>
