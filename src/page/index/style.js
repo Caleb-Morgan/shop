@@ -34,3 +34,29 @@ export const Banner = styled.div`
         }
     }
 `
+export const Content = styled.div`
+    padding: 0 8px;
+    margin: 3rem 1rem;
+    img{
+        width: 100%;
+    }
+    a{
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+        &:hover::after{
+            transform: translateY(0);
+        }
+        &::after{
+            content: '';
+            position: absolute;
+            top:0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transform: translateY(50%);
+            transition: 0.3s ease-in-out;
+            background: linear-gradient(to bottom, rgba(154,142,135,0) 0%, rgba(133,133,133,0.5) 100%);
+        }
+    }
+`

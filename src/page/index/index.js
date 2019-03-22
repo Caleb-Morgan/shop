@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col } from 'antd';
-import { Banner } from './style';
+import { Link } from 'react-router-dom';
+import { Banner, Content } from './style';
 
 class Index extends Component{
     render(){
@@ -11,9 +12,13 @@ class Index extends Component{
                     <img src="./folks.png" alt="test"/>
                     <div className="bottom">SHOP ONLINE</div>
                 </Banner>
-                <Row>
-                   <Col></Col> 
-                </Row>
+                <Content>
+                    <Row type="flex" justify="center" gutter={40}>
+                    <Col lg={6}><Link to="/"><img src="./bg.jpg" alt="test"/></Link></Col>
+                    <Col lg={6}><Link to="/"><img src="./bg.jpg" alt="test"/></Link></Col> 
+                    </Row>
+                </Content>
+                
             </Fragment>
         )
     }
