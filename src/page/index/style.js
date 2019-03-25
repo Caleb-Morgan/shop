@@ -35,8 +35,41 @@ export const Banner = styled.div`
     }
 `
 export const Content = styled.div`
+    max-width: 1140px;
     padding: 0 8px;
     margin: 3rem 1rem;
+    &.container{
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto
+    }
+    @media (min-width: 576px) {
+        &.container {
+            max-width:540px
+        }
+    }
+
+    @media (min-width: 768px) {
+        &.container {
+            max-width:720px
+        }
+    }
+
+    @media (min-width: 992px) {
+        &.container {
+            max-width:960px
+        }
+    }
+
+    @media (min-width: 1200px) {
+        &.container {
+            max-width:1140px
+        }
+    }
+    .ant-row{
+        margin-bottom: 40px;
+    }
     img{
         width: 100%;
     }
@@ -44,10 +77,27 @@ export const Content = styled.div`
         position: relative;
         display: inline-block;
         overflow: hidden;
-        &:hover::after{
+        .hover{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            transform: translateY(100%);
+            transition: 0.3s ease-in-out;
+            h3{
+            line-height: 1rem;
+            color: #fff;
+            font-weight: bold;
+            }
+        }
+        &:hover .hover{
             transform: translateY(0);
         }
-        &::after{
+        &:hover::before{
+            transform: translateY(0);
+        }
+        &::before{
             content: '';
             position: absolute;
             top:0;

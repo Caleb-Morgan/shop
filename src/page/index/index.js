@@ -12,10 +12,19 @@ class Index extends Component{
                     <img src="./folks.png" alt="test"/>
                     <div className="bottom">SHOP ONLINE</div>
                 </Banner>
-                <Content>
-                    <Row type="flex" justify="center" gutter={40}>
-                    <Col lg={6}><Link to="/"><img src="./bg.jpg" alt="test"/></Link></Col>
-                    <Col lg={6}><Link to="/"><img src="./bg.jpg" alt="test"/></Link></Col> 
+                <Content className="container">
+                    <Row gutter={40}>
+                    <Col lg={12} xs={24}><Link to="/"><img src="./bg.jpg" alt="test"/><div className="hover"><h3>Rog</h3></div></Link></Col>
+                    <Col lg={12} xs={24}><Link to="/"><img src="./bg.jpg" alt="test"/></Link></Col> 
+                    </Row>
+                    <Row gutter={40}>
+                    <Col lg={8} xs={8}><Link to="/"><img src="./bg.jpg" alt="test"/><div className="hover"><h3>Rog</h3></div></Link></Col>
+                    <Col lg={8} xs={8}><Link to="/"><img src="./bg.jpg" alt="test"/></Link></Col>
+                    <Col lg={8} xs={8}><Link to="/"><img src="./bg.jpg" alt="test"/></Link></Col> 
+                    </Row>
+                    <Row gutter={40}>
+                    <Col lg={12} xs={12}><Link to="/"><img src="./bg.jpg" alt="test"/><div className="hover"><h3>Rog</h3></div></Link></Col>
+                    <Col lg={12} xs={12}><Link to="/"><img src="./bg.jpg" alt="test"/></Link></Col> 
                     </Row>
                 </Content>
                 
